@@ -17,5 +17,11 @@
 const Route = use('Route')
 
 Route.get('/', () => {
-  return { greeting: 'Hello world in JSON' }
+  return { greeting: 'Hola orthosign' }
 })
+
+//Registro User
+Route.post('/register','UserController.registro')
+
+//Login User
+Route.post('/login','AuthController.login')

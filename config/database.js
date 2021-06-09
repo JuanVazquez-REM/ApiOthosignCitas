@@ -16,7 +16,7 @@ module.exports = {
   | interacting with SQL databases.
   |
   */
-  connection: Env.get('DB_CONNECTION', 'sqlite'),
+  connection: Env.get('DB_CONNECTION', 'mongodb'),
 
   /*
   |--------------------------------------------------------------------------
@@ -80,5 +80,22 @@ module.exports = {
       database: Env.get('DB_DATABASE', 'adonis')
     },
     debug: Env.get('DB_DEBUG', false)
+  },
+
+  mongodb: {
+    client: 'mongodb',
+    connectionString: Env.get('DB_CONNECTION_STRING', 'mongodb+srv://UserHome:smarthomemongodb@cluster0.optcn.mongodb.net/AdonisSmartHome?retryWrites=true&w=majority'),
+    connection: {
+      host: Env.get('DB_HOST', null),
+      port: Env.get('DB_PORT', null),
+      username: Env.get('DB_USER', 'admin'),
+      password: Env.get('DB_PASSWORD', ''),
+      database: Env.get('DB_DATABASE', 'adonis'),
+      options: {
+        useNewUrlParser: true,
+        useCreateIndex: true,
+        useUnifiedTopology: true
+      }
+    }
   }
 }
