@@ -1,5 +1,8 @@
 'use strict'
 
+
+const Admin = use('App/Models/Admin')
+const Cliente = use('App/Models/Cliente')
 const User = use('App/Models/User')
 const {validate} = use('Validator') 
 class AuthController {
@@ -24,23 +27,56 @@ class AuthController {
                 if(token){
                     const user = await User.where('email',email).first()
 
-                    return response.status(200).json({
-                        token: token,
-                        user: user
-                    })
+                    const admin = await Admin.where('user_id',user.user_id).first()
+                    if(admin){
+                        return response.status(200).json({
+                            token: token,
+                            user: user,
+                            admin: admin
+                        })
+
+                    }else{
+                        const cliente = await Cliente.where('user_id',user.user_id).first()
+
+                        return response.status(200).json({
+                            token: token,
+                            user: user,
+                            cliente: cliente
+                        })
+                    }
                 }else{
-                    return response.status(400).json({message: "ta mal"})
+                    return response.status(505).json("No se pudo generar el token")
                 }
-                
-                
+
             } catch (error) {
                 return response.status(400).json({
-                    message: error
+                    error: error,
+                    message: "Email o contraseña incorrecta"
                 })
             }
         
         }
     }
+
+    async check({response,auth}){
+        try {
+            await auth.check()
+
+            return response.status(200).json({
+                status: true,
+                message: "Token valido",
+                user: auth.user
+            })
+            
+        } catch (error) {
+            return response.status(200).json({
+                status: false,
+                message: "Token Invalido"
+            })
+        }
+    }
+
+
 
 }
 

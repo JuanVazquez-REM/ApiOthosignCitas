@@ -84,13 +84,13 @@ module.exports = {
 
   mongodb: {
     client: 'mongodb',
-    connectionString: Env.get('DB_CONNECTION_STRING', 'mongodb+srv://UserHome:smarthomemongodb@cluster0.optcn.mongodb.net/AdonisSmartHome?retryWrites=true&w=majority'),
+    connectionString: Env.get('DB_CONNECTION_STRING', 'mongodb+srv://UserHome:smarthomemongodb@cluster0.optcn.mongodb.net/Orthosign?retryWrites=true&w=majority'),
     connection: {
       host: Env.get('DB_HOST', null),
       port: Env.get('DB_PORT', null),
       username: Env.get('DB_USER', 'admin'),
       password: Env.get('DB_PASSWORD', ''),
-      database: Env.get('DB_DATABASE', 'adonis'),
+      database: Env.get('DB_DATABASE', 'Orthosign'),
       options: {
         useNewUrlParser: true,
         useCreateIndex: true,
