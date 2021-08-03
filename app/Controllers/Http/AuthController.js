@@ -8,7 +8,7 @@ const {validate} = use('Validator')
 class AuthController {
 
     async login({request, response, auth}){
-
+        console.log("Si entra al metodo login")
         const rules = {
             email: 'required|string',
             password: 'required|string',
@@ -37,7 +37,7 @@ class AuthController {
 
                     }else{
                         const cliente = await Cliente.where('user_id',user.user_id).first()
-
+                        console.log("Respuesta enviada")
                         return response.status(200).json({
                             token: token,
                             user: user,
