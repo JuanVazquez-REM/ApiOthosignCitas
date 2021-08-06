@@ -11,7 +11,7 @@ class ClienteController {
         const rules = {
             nombre: 'required|string',
             apellido: 'required|string',
-            edad: 'required|integer',
+            edad: 'required',
             genero: 'required|string',
             telefono: 'required|string',
             password: 'required|string',
